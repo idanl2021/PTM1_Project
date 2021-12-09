@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class TimeSeries {
-	HashMap<String, Vector<Float>> hashMap;
-	String[] columns;
+	private HashMap<String, float[]> hashMap;
+	private String[] columns;
 	
 	public TimeSeries(String csvFileName) {
 		try{
@@ -20,15 +20,15 @@ public class TimeSeries {
 			Vector<Float>[] vectors = new Vector[columns.length];
 			while (myReader.hasNextLine()) {
 				//data += "/n" + myReader.nextLine();
-				String[] splicedData;
+				String[] splittedData;
 				data = myReader.nextLine();
-				splicedData = data.split(regex);
+				splittedData = data.split(regex);
 				for(int i = 0; i < columns.length; i++){
-					vectors[i].add(Float.parseFloat(splicedData[i]));
+					vectors[i].add(Float.parseFloat(splittedData[i]));
 				}
 			}
 			for(int i = 0; i < columns.length; i++){
-				hashMap.put(columns[i], vectors[i]);
+				hashMap.put(columns[i], this.vectorToArray(vectors[i]));
 			}
 			myReader.close();
 		}
@@ -41,5 +41,15 @@ public class TimeSeries {
 		return columns;
 	}
 
+	public float[] getVector(String column){
+		return hashMap.get(column);
+	}
 
+	private float[] vectorToArray(Vector<Float> vector){
+		float[] floats = new float[vector.size()];
+		for(int i = 0; i < vector.size(); i++){
+			floats[i] = vector.get(i);
+		}
+		return floats;
+	}
 }
