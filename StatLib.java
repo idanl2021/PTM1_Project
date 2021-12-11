@@ -57,6 +57,11 @@ public class StatLib {
 		float b = avg(y) - a*avg(x);
 		return new Line(a, b);
 	}
+	public static Line linear_reg(float[] x, float[] y) {
+		float a = cov(x,y) / var(x);
+		float b = avg(y) - a*avg(x);
+		return new Line(a, b);
+	}
 
 	// returns the deviation between point p and the line equation of the points
 	public static float dev(Point p,Point[] points){

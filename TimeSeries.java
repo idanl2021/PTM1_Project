@@ -18,6 +18,9 @@ public class TimeSeries {
 			String data = myReader.nextLine();
 			columns = data.split(regex);
 			Vector<Float>[] vectors = new Vector[columns.length];
+			for(int i = 0; i < columns.length; i++){
+				vectors[i] = new Vector<>();
+			}
 			while (myReader.hasNextLine()) {
 				//data += "/n" + myReader.nextLine();
 				String[] splittedData;
@@ -33,7 +36,7 @@ public class TimeSeries {
 			myReader.close();
 		}
 		catch (Exception ex){
-
+		//	System.out.println(ex.getMessage());
 		}
 	}
 
@@ -41,7 +44,7 @@ public class TimeSeries {
 		return columns;
 	}
 
-	public float[] getVector(String column){
+	public float[] getArray(String column){
 		return hashMap.get(column);
 	}
 
@@ -52,4 +55,9 @@ public class TimeSeries {
 		}
 		return floats;
 	}
+
+	public HashMap<String, float[]> getHashMap() {
+		return hashMap;
+	}
+
 }
