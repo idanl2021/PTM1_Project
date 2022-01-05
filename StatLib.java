@@ -4,6 +4,12 @@ package test;
 public class StatLib {
 
 	// simple average
+
+	/**
+	 * simple average
+	 * @param x	float array
+	 * @return	simple average
+	 */
 	public static float avg(float[] x){
 		float sum = 0;
 		for(float f : x){

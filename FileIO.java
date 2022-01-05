@@ -25,7 +25,11 @@ public class FileIO implements DefaultIO{
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * reads the next line in the file
+	 * @return next line
+	 */
 	@Override
 	public String readText() {
 		return in.nextLine();
@@ -44,6 +48,11 @@ public class FileIO implements DefaultIO{
 	@Override
 	public void write(float val) {
 		out.print(val);
+	}
+
+	@Override
+	public Boolean hasNextLine() {
+		return in.hasNextLine();
 	}
 
 	public void close() {
