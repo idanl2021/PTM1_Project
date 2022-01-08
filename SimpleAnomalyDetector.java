@@ -3,12 +3,12 @@ import java.util.*;
 
 public class SimpleAnomalyDetector implements TimeSeriesAnomalyDetector {
 	ArrayList<CorrelatedFeatures> correlatedFeatures;
+	float threshold = 0.1f;
 
 	@Override
 	public void learnNormal(TimeSeries ts) {
 		String[] columns = ts.getColumns();
 		ArrayList<CorrelatedFeatures> features = new ArrayList<>();
-		final float threshold = 0.1f;//
 		float correlation;
 
 		for(int i = 0; i < columns.length; i++){

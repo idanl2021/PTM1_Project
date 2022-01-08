@@ -1,0 +1,7 @@
+Welcome to the Anomaly Detection Server.
+Please choose an option:
+1. upload a time series csv file
+Please upload your local train CSV file.
+Upload complete
+Please upload your local test CSV file.
+Upload complete

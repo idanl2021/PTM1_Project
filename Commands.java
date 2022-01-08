@@ -33,6 +33,7 @@ public class Commands {
 	private class SharedState{
 		// implement here whatever you need
 		List<AnomalyReport> anomalyReports = new ArrayList<>();
+		SimpleAnomalyDetector anomalyDetector = new SimpleAnomalyDetector();
 	}
 	
 	private  SharedState sharedState=new SharedState();
@@ -72,16 +73,37 @@ public class Commands {
 
 		@Override
 		public void execute() {
-			SimpleAnomalyDetector anomalyDetector = new SimpleAnomalyDetector();
 			dio.write("Please upload your local train CSV file.\n");
 			TimeSeries train_ts = new TimeSeries(dio);
-			anomalyDetector.learnNormal(train_ts);
-			dio.write("Upload complete");
+			sharedState.anomalyDetector.learnNormal(train_ts);
+			dio.write("Upload complete\n");
 			dio.write("Please upload your local test CSV file.\n");
 			TimeSeries test_ts = new TimeSeries(dio);
-			sharedState.anomalyReports = anomalyDetector.detect(test_ts);
-			dio.write("Upload complete");
+			//sharedState.anomalyReports = anomalyDetector.detect(test_ts);
+			dio.write("Upload complete\n");
 		}
 	}
+
+	public class ChangeAlgorithmSettings extends Command{
+
+
+		public ChangeAlgorithmSettings() {
+			super("algorithm settings\n");
+		}
+
+		@Override
+		public void execute() {
+			dio.write("The current correlation threshold is " + sharedState.anomalyDetector.threshold + "\n");
+			dio.write("Type a new threshold\n");
+			float ts = dio.readVal();
+			while(!(ts < 1 && ts > 0)){
+				dio.write("please choose a value between 0 and 1.\n");
+				ts = dio.readVal();
+			}
+			sharedState.anomalyDetector.threshold = ts;
+		}
+	}
+
+
 	
 }

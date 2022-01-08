@@ -43,7 +43,10 @@ public class TimeSeries {
 	public TimeSeries(Commands.DefaultIO dio){
 		try {
 			hashMap = new HashMap<>();
-			String data = dio.readText();
+			String data = "";
+			while (data == ""){
+				data = dio.readText();
+			}
 			columns = data.split(REGEX);
 			Vector<Float>[] vectors = new Vector[columns.length];
 			for(int i = 0; i < columns.length; i++){
@@ -51,14 +54,18 @@ public class TimeSeries {
 			}
 			while (dio.hasNextLine()) {
 				data = dio.readText();
-				if (data != "done") {
+				if (!data.equals("done")) {
 					String[] splittedData;
 					splittedData = data.split(REGEX);
 					for(int i = 0; i < columns.length; i++){
 						vectors[i].add(Float.parseFloat(splittedData[i]));
 					}
 				}
+				else{
+					break;
+				}
 			}
+			int x = 0;
 			for(int i = 0; i < columns.length; i++){
 				hashMap.put(columns[i], this.vectorToArray(vectors[i]));
 			}
