@@ -84,10 +84,10 @@ public class Commands {
 		}
 	}
 
-	public class ChangeAlgorithmSettings extends Command{
+	public class ChangeAlgorithmSettingsCommand extends Command{
 
 
-		public ChangeAlgorithmSettings() {
+		public ChangeAlgorithmSettingsCommand() {
 			super("algorithm settings\n");
 		}
 
@@ -101,6 +101,18 @@ public class Commands {
 				ts = dio.readVal();
 			}
 			sharedState.anomalyDetector.threshold = ts;
+		}
+	}
+
+	public  class ExitCommand extends Command{
+
+		public ExitCommand() {
+			super("exit\n");
+		}
+
+		@Override
+		public void execute() {
+			return;
 		}
 	}
 

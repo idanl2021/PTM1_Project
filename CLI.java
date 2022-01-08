@@ -19,9 +19,10 @@ public class CLI {
 		// example: commands.add(c.new ExampleCommand());
 		// implement
 		commands.add(c.new UploadTimeSeriesCommand());
-		commands.add(c.new ChangeAlgorithmSettings());
+		commands.add(c.new ChangeAlgorithmSettingsCommand());
 		 //TODO: add other commands
 
+		commands.add(c.new ExitCommand());
 		int exitIndex = commands.size();
 
 		dio.write("Welcome to the Anomaly Detection Server.\n" +
