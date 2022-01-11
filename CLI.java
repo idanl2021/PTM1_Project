@@ -20,17 +20,32 @@ public class CLI {
 		// implement
 		commands.add(c.new UploadTimeSeriesCommand());
 		commands.add(c.new ChangeAlgorithmSettingsCommand());
+		commands.add(c.new DetectAnomaliesCommand());
+		commands.add(c.new DisplayResultsCommand());
+		commands.add(c.new UploadAnomaliesAndAnalyzeResultsCommand());
 		 //TODO: add other commands
 
 		commands.add(c.new ExitCommand());
 		int exitIndex = commands.size();
 
-		dio.write("Welcome to the Anomaly Detection Server.\n" +
-				"Please choose an option:\n");
+
 		do {
+			dio.write("Welcome to the Anomaly Detection Server.\n" +
+					"Please choose an option:\n");
 			displayCommands();
-			indexOfCommand = (int)dio.readVal();
-			commands.get(indexOfCommand-1).execute();
+			String str = dio.readText();
+			while (str.equals(""))  str = dio.readText();
+			try {
+				indexOfCommand =Integer.parseInt(str);  //(int)dio.readVal();
+				try {
+					commands.get(indexOfCommand-1).execute();
+				} catch (Exception e) {
+					continue;
+				}
+			} catch (NumberFormatException e) {
+				indexOfCommand = 1;
+				continue;
+			}
 		} while (indexOfCommand != exitIndex);
 
 	}

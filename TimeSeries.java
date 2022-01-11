@@ -52,7 +52,7 @@ public class TimeSeries {
 			for(int i = 0; i < columns.length; i++){
 				vectors[i] = new Vector<>();
 			}
-			while (dio.hasNextLine()) {
+			while (true/*dio.hasNextLine()*/) {
 				data = dio.readText();
 				if (!data.equals("done")) {
 					String[] splittedData;
