@@ -12,7 +12,6 @@ public class CLI {
 	Commands c;
 	
 	public CLI(DefaultIO dio) {
-		int indexOfCommand;
 		this.dio=dio;
 		c=new Commands(dio); 
 		commands=new ArrayList<>();
@@ -26,6 +25,18 @@ public class CLI {
 		 //TODO: add other commands
 
 		commands.add(c.new ExitCommand());
+
+	}
+
+	protected void displayCommands(){
+		for (int i = 0; i < commands.size(); i++) {
+			dio.write((i+1) + ". " + commands.get(i).description);
+		}
+	}
+	
+	public void start() {
+		// implement
+		int indexOfCommand;
 		int exitIndex = commands.size();
 
 
@@ -47,16 +58,5 @@ public class CLI {
 				continue;
 			}
 		} while (indexOfCommand != exitIndex);
-
-	}
-
-	protected void displayCommands(){
-		for (int i = 0; i < commands.size(); i++) {
-			dio.write((i+1) + ". " + commands.get(i).description);
-		}
-	}
-	
-	public void start() {
-		// implement
 	}
 }

@@ -1,0 +1,40 @@
+Please choose an option:
+3. detect anomalies
+6. exit
+Please upload your local test CSV file.
+Please choose an option:
+3. detect anomalies
+6. exit
+Welcome to the Anomaly Detection Server.
+2. algorithm settings
+5. upload anomalies and analyze results
+Welcome to the Anomaly Detection Server.
+2. algorithm settings
+5. upload anomalies and analyze results
+74	A-B
+133	C-D
+134	C-D
+Welcome to the Anomaly Detection Server.
+2. algorithm settings
+5. upload anomalies and analyze results
+Upload complete.
+Welcome to the Anomaly Detection Server.
+2. algorithm settings
+4. display results
+6. exit
+True Positive Rate: 0.5
+Please choose an option:
+3. detect anomalies
+6. exit
+True Positive Rate: 1.0
+Please choose an option:
+3. detect anomalies
+6. exit
+True Positive Rate: 1.0
+Please choose an option:
+3. detect anomalies
+6. exit
+True Positive Rate: 0.666
+Please choose an option:
+3. detect anomalies
+6. exit
